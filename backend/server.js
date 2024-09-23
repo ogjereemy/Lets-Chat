@@ -6,6 +6,8 @@ const chatRoutes = require("./routes/chatRoutes");
 const messageRoutes = require("./routes/messageRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleWare");
 const path = require("path");
+const colors = require("colors");
+
 
 dotenv.config();
 connectDB();
@@ -47,7 +49,7 @@ const PORT = process.env.PORT;
 
 const server = app.listen(
   PORT,
-  console.log(`Server running on PORT ${PORT}...`)
+  console.log(`Server running on PORT ${PORT}...`.yellow)
 );
 
 const io = require("socket.io")(server, {
@@ -59,7 +61,7 @@ const io = require("socket.io")(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("Connected to socket.io");
+  console.log("Connected to socket.io".green);
   socket.on("setup", (userData) => {
     socket.join(userData._id);
     socket.emit("connected");
@@ -67,7 +69,7 @@ io.on("connection", (socket) => {
 
   socket.on("join chat", (room) => {
     socket.join(room);
-    console.log("User Joined Room: " + room);
+    console.log("User Joined Room: " + room.green);
   });
   socket.on("typing", (room) => socket.in(room).emit("typing"));
   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));

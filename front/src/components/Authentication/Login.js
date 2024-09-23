@@ -58,7 +58,7 @@ const Login = () => {
       history.push("/chats");
     } catch (error) {
       toast({
-        title: "Invalid credentials",
+        title: "Please check email and password...",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -112,7 +112,7 @@ const Login = () => {
           setPassword("123456");
         }}
       >
-        Guest User
+        Guest
       </Button>
     </VStack>
   );

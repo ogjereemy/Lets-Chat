@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Chat = require("../models/chatModel");
 const User = require("../models/userModel");
+const colors = require("colors");
+
 
 //@description     Create or fetch One to One Chat
 //@route           POST /api/chat/
@@ -9,7 +11,7 @@ const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
 
   if (!userId) {
-    console.log("UserId param not sent with request");
+    console.log("UserId param not sent with request").green.bold;
     return res.sendStatus(400);
   }
 
